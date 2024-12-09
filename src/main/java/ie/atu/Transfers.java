@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Transfers {
 
-
+    @NotNull(message = "Player ID cannot be null")
     private int playerId;
 
     @NotBlank(message = "Name cannot be blank")
@@ -40,6 +40,7 @@ public class Transfers {
     @NotBlank(message = "Contract Length cannot be blank")
     private String contractLength;
 
+    @NotBlank(message = "Agent Fees cannot be blank")
     private String agentFees;
 
     private String loanDuration;
