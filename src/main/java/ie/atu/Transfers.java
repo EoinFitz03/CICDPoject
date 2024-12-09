@@ -1,6 +1,8 @@
 package ie.atu;
 
-import com.fasterxml.jackson.annotation.JsonTypeId;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,13 +10,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transfers {
 
-    @NotNull(message = "Player ID cannot be null")
-    private int playerId;
+public class Transfers{
+
+    @Id
+    private int transferId;
+
+    /*@NotNull(message = "Player ID cannot be null")
+    private int playerId;*/
 
     @NotBlank(message = "Name cannot be blank")
     private String name;
