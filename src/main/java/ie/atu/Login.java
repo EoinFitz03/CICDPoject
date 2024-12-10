@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,16 +14,28 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 
+
 public class Login {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long userid;
+    private Long id;
+
+    @NotBlank
+    private String loginid;
+
 
     @NotBlank
     private String username;
 
     @NotBlank
     private String password;
+
+    public Login(Long id, String loginid, String username, String password){
+    this.id=id;
+    this.loginid=loginid;
+    this.username=username;
+    this.password=password;
+}
 
 }
