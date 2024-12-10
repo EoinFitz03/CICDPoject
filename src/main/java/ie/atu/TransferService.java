@@ -1,29 +1,29 @@
 package ie.atu;
 
-import jakarta.validation.Valid;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class TransferService {
-    List<Transfers> transfersList = new ArrayList<>();
+    private final TransferRepository transferRepository;
+
+    public TransferService(TransferRepository transferRepository) {
+        this.transferRepository = transferRepository;
+    }
+
+    public void saveTransfer(Transfers transfers){
+        transferRepository.save(transfers);
+    }
 
     //GET
-    public List<Transfers> getAllTransfers(){
-        return transfersList;
+    public Transfers getTransfersById(String transferId){
+        return transferRepository.findByTransferId(transferId);
     }
 
     //POST
-    public List<Transfers> addTransfer( Transfers transferRequest){
+    /*public List<Transfers> addTransfer( Transfers transferRequest){
         transfersList.add(transferRequest);
         return transfersList;
-    }
+    }*/
 
     //PUT
     /*public List<Transfers> updateTransfers(int transferId, Transfers utransfer){
