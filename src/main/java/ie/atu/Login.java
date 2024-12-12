@@ -13,8 +13,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-
-
+@AllArgsConstructor
 public class Login {
 
     @Id
@@ -31,11 +30,42 @@ public class Login {
     @NotBlank
     private String password;
 
-    public Login(Long id, String loginid, String username, String password){
+    /*public Login(Long id, String loginid, String username, String password){
     this.id=id;
     this.loginid=loginid;
     this.username=username;
     this.password=password;
-}
+}*/
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getLoginid() {
+        return loginid;
+    }
+
+    public void setLoginid(String loginid) {
+        this.loginid = loginid;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
