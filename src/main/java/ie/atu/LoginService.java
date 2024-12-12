@@ -2,10 +2,12 @@ package ie.atu;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class LoginService{
 
-    private final LoginRepository loginRepository;
+    private  LoginRepository loginRepository;
 
     public LoginService(LoginRepository loginRepository){
         this.loginRepository = loginRepository;
@@ -22,6 +24,26 @@ public class LoginService{
         // For simplicity, we return a dummy person here
         return loginRepository.findByLoginid(loginid);
     }
+
+
+    public void deletePerson(Long id) {
+        loginRepository.deleteById(id);
+    }
+
+    public void updateLogin(String username, Login updatedLogin) {
+        Optional<Login> existingLoginOptional = loginRepository.findByUsername(username);
+
+        if (existingLoginOptional.isPresent()) {
+            Login existingLogin = existingLoginOptional.get();
+
+            // Update fields with the new data
+
+            existingLogin.setUsername(updatedLogin.getUsername());
+            existingLogin.setPassword(updatedLogin.getPassword());
+            loginRepository.save(existingLogin);
+        }
+    }
+
 
 
 
