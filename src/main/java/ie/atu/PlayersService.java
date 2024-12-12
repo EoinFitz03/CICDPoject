@@ -10,27 +10,19 @@ import java.util.List;
 
 @Service
 public class PlayersService {
-private static PlayersRepository playersRepository;
+    private final PlayersRepository playersRepository;
 
-public PlayersService(PlayersRepository playersRepository) {
-    this.playersRepository = playersRepository;
-}
-private List<Players> myList = new ArrayList<>();
+    public PlayersService(PlayersRepository playersRepository) {
+        this.playersRepository = playersRepository;
+    }
 
-public static void savePlayer(Players player) {
-    playersRepository.save(player);
-    System.out.println("Player saved");
-}
+    public void savePlayer(Players players){
+        playersRepository.save(players);
+    }
 
-@GetMapping
-    public List<Players> getAllPlayers() {
-    return myList;
-}
-
-@PostMapping
-    public List<Players> addPlayer(Players player) {
-    myList.add(player);
-    return myList;
-}
+    //GET
+    public Players getPlayersById(String playerID){
+        return playersRepository.findByPlayerID(playerID);
+    }
 
 }

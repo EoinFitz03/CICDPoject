@@ -11,29 +11,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/players")
 public class PlayersController {
-    private PlayersService myService;
+    @Autowired
+    private PlayersService playersService;
 
-    public PlayersController(PlayersService myService) {
-        this.myService = myService;
+    private PlayersService myPService;
+
+    public PlayersController(PlayersService myPService){
+        this.myPService = myPService;
     }
 
-    private List<Players> list = new ArrayList<>();
 
-    @GetMapping
-    public List<Players> getAll() {
-        list = myService.getAllPlayers();
-        return list;
+    @GetMapping("/{playerID}")
+    public ResponseEntity<?> getAllPlayers(@PathVariable String playerID){
+        Players player = myPService.getPlayersById(playerID);
+
+        if (player == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(player);
     }
 
     @PostMapping
-    public List<Players> newPlayer(@RequestBody Players player) {
-
-        PlayersService.savePlayer(player);
-
-        System.out.println(player);
-
-        list = myService.addPlayer(player);
-        return list;
+    public ResponseEntity<String>addTransfer(@RequestBody @Valid Players newPlayer){
+        myPService.savePlayer(newPlayer);
+        return new ResponseEntity<>("new transfer added", HttpStatus.OK);
     }
 
 
