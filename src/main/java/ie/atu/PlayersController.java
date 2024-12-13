@@ -23,11 +23,16 @@ public class PlayersController {
 
     @GetMapping("/{playerID}")
     public ResponseEntity<?> getAllPlayers(@PathVariable String playerID){
+        if (playerID.length() > 5 || playerID.isBlank()){
+            return ResponseEntity.badRequest().body("playerID is invalid");
+        }
+
         Players player = myPService.getPlayersById(playerID);
 
-        if (player == null){
+        if(player == null){
             return ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(player);
     }
 
@@ -36,6 +41,13 @@ public class PlayersController {
         myPService.savePlayer(newPlayer);
         return new ResponseEntity<>("new transfer added", HttpStatus.OK);
     }
+
+    @PutMapping("/{name}")
+    public ResponseEntity<String> updatePlayer(@PathVariable String name, @RequestBody Players updatedPlayers){
+        playersService.updatePlayer(name, updatedPlayers);
+        return new ResponseEntity<>("Player updated successfully", HttpStatus.OK);
+    }
+
 
 
 }
