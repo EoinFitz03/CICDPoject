@@ -44,6 +44,12 @@ public class LoginController {
         return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteLogin(@PathVariable Long id ) {
+        loginService.deleteLogin(id);
+        return new ResponseEntity<>("User delete successfully", HttpStatus.OK);
+    }
+
 
 
 }
