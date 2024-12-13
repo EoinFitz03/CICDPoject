@@ -51,4 +51,7 @@ public class PlayersService {
 
     }
 
+    public void deletePlayer(Long id){
+        playersRepository.deleteById(id);
+    }
 }

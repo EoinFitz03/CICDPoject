@@ -48,6 +48,12 @@ public class PlayersController {
         return new ResponseEntity<>("Player updated successfully", HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletePlayer(@PathVariable Long id){
+        playersService.deletePlayer(id);
+        return new ResponseEntity<>("Player deleted successfully", HttpStatus.OK);
+    }
+
 
 
 }
