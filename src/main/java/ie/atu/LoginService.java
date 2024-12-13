@@ -26,7 +26,7 @@ public class LoginService{
     }
 
 
-    public void deletePerson(Long id) {
+    public void deleteLogin(Long id) {
         loginRepository.deleteById(id);
     }
 
