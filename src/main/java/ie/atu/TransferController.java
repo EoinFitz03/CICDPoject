@@ -39,10 +39,16 @@ public class TransferController {
        return new ResponseEntity<>("new transfer added", HttpStatus.OK);
     }
 
-    /*@PutMapping("/{name}")
+    @PutMapping("/{name}")
     public ResponseEntity<String> updateTransfer(@PathVariable String name, @RequestBody Transfers updatedTransfer){
         myTService.updateTransfer(name, updatedTransfer);
         return new ResponseEntity<>("Transfer updated successfully", HttpStatus.OK);
-    }*/
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTransfer(@PathVariable Long id){
+        myTService.deleteTransfer(id);
+        return new ResponseEntity<>("Transfer deleted successfully", HttpStatus.OK);
+    }
 
 }

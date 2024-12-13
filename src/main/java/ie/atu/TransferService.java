@@ -12,6 +12,7 @@ public class TransferService {
         this.transferRepository = transferRepository;
     }
 
+    //POST
     public void saveTransfer(Transfers transfers){
         transferRepository.save(transfers);
     }
@@ -21,7 +22,8 @@ public class TransferService {
         return transferRepository.findByTransferId(transferId);
     }
 
-    /*public void updateTransfer(String name, Transfers updatedTransfers){
+    //PUT
+    public void updateTransfer(String name, Transfers updatedTransfers){
         Optional<Transfers> existingtransferOptional = transferRepository.findByName(name);
 
         if (existingtransferOptional.isPresent()){
@@ -37,7 +39,12 @@ public class TransferService {
             existingTransfer.setAgentFees(updatedTransfers.getAgentFees());
             transferRepository.save(existingTransfer);
         }
-    }*/
+    }
+
+    //DELETE
+    public void deleteTransfer(Long id){
+        transferRepository.deleteById(id);
+    }
 
     //POST
     /*public List<Transfers> addTransfer( Transfers transferRequest){
