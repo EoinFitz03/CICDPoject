@@ -50,7 +50,12 @@ public class Transfers{
     @NotBlank
     private String agentFees;
 
+
+
+  
+=======
     /* public Transfers(Long id, String transferId, String name, int ageAtTransfer, String previousClub, String newClub, String transferFee, String transferType, String transferDate, String contractLength, String agentFees ){
+
         this.id  = id;
         this.transferId = transferId;
         this.name = name;
@@ -63,6 +68,8 @@ public class Transfers{
         this.contractLength = contractLength;
         this.agentFees = agentFees;
     }*/
+
+
 
     public Long getId() {
         return id;
@@ -107,6 +114,7 @@ public class Transfers{
     public String getNewClub() {
         return newClub;
     }
+
 
     public void setNewClub(String newClub) {
         this.newClub = newClub;
