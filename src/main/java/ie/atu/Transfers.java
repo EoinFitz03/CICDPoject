@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -52,7 +53,7 @@ public class Transfers{
     private String agentFees;
 
 
-    public Transfers(Long id, String transferId, String name, int ageAtTransfer, String previousClub, String newClub, String transferFee, String transferType, String transferDate, String contractLength, String agentFees ){
+   /* public Transfers(Long id, String transferId, String name, int ageAtTransfer, String previousClub, String newClub, String transferFee, String transferType, String transferDate, String contractLength, String agentFees ){
         this.id  = id;
         this.transferId = transferId;
         this.name = name;
@@ -64,6 +65,6 @@ public class Transfers{
         this.transferDate = transferDate;
         this.contractLength = contractLength;
         this.agentFees = agentFees;
-    }
+    }*/
 
 }
