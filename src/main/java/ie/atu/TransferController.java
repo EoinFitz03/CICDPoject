@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @RequestMapping("/transfers")
 public class TransferController {
     @Autowired
-    private TransferService transferService;
-
     private TransferService myTService;
 
     public TransferController(TransferService myTService){
@@ -22,6 +20,11 @@ public class TransferController {
 
     @GetMapping("/{transferId}")
     public ResponseEntity<?> getAllTransfers(@PathVariable String transferId){
+
+        if (transferId.length() > 5 ){
+            return ResponseEntity.badRequest().body("TransferId is not valid");
+        }
+
         Transfers transfer = myTService.getTransfersById(transferId);
 
         if (transfer == null){
@@ -36,15 +39,16 @@ public class TransferController {
        return new ResponseEntity<>("new transfer added", HttpStatus.OK);
     }
 
-    /*@PutMapping("/{transferId}")
-    public ResponseEntity<List<Transfers>> updateTransfers(@PathVariable @Valid int transferId, @RequestBody @Valid Transfers updatedTransfer){
-        List<Transfers> updatedList = transferService.updateTransfers(transferId, updatedTransfer);
-        return ResponseEntity.ok(updatedList);
+    @PutMapping("/{name}")
+    public ResponseEntity<String> updateTransfer(@PathVariable String name, @RequestBody Transfers updatedTransfer){
+        myTService.updateTransfer(name, updatedTransfer);
+        return new ResponseEntity<>("Transfer updated successfully", HttpStatus.OK);
     }
 
-    @DeleteMapping("/{transferId}")
-    public ResponseEntity<List<Transfers>> deleteTransfer(@PathVariable int transferId) {
-        List<Transfers> updatedList = transferService.deleteTransfers(transferId);
-        return ResponseEntity.ok(updatedList);
-    }*/
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTransfer(@PathVariable Long id){
+        myTService.deleteTransfer(id);
+        return new ResponseEntity<>("Transfer deleted successfully", HttpStatus.OK);
+    }
+
 }
