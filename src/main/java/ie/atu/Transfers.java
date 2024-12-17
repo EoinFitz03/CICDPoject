@@ -52,8 +52,7 @@ public class Transfers{
 
 
 
-  
-=======
+
     /* public Transfers(Long id, String transferId, String name, int ageAtTransfer, String previousClub, String newClub, String transferFee, String transferType, String transferDate, String contractLength, String agentFees ){
 
         this.id  = id;
