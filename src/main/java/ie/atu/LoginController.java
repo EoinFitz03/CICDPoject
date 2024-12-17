@@ -12,8 +12,10 @@ public class LoginController {
     @Autowired
     private LoginService loginService;
 
+   // private final LoginClient loginClient;
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
+       // this.loginClient = loginClient;
     }
 
     @GetMapping("/{loginid}")
